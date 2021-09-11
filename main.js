@@ -15,6 +15,7 @@ const handleImg = e => {
   if (file) {
     if (file.size > 2097152) {
       console.error('file size must be under 2 megabytes');
+      alert('file size must be under 2 megabytes');
       return;
     }
     try {
