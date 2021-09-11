@@ -29,8 +29,9 @@ window.addEventListener('DOMContentLoaded', e => {
 const onMapClick = e => {
   var popup = L.popup({ maxHeight: 300 });
 
-  document.getElementById('latitude').value = e.latlng.lat;
-  document.getElementById('longitude').value = e.latlng.lng;
+  // use prepended '+' to do some bit-magic (drops zero's and forces float type)
+  document.getElementById('latitude').value = +e.latlng.lat.toFixed(6);
+  document.getElementById('longitude').value = +e.latlng.lng.toFixed(6);
 
   popup
     .setLatLng(e.latlng)

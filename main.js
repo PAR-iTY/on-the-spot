@@ -37,8 +37,9 @@ const handleReader = e => {
 
     preview.src = reader.result;
 
-    // add this to hidden textarea element
     preview.style.display = 'inline-block';
+
+    // add this to hidden textarea element
     document.getElementById('hidden-base64').value = reader.result;
   } else {
     console.error('[reader.result error]:', reader.result);
