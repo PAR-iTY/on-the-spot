@@ -1,5 +1,6 @@
 /*
   todo
+    - if user manually sets lat/long, use same toFixed() rounding
     - tailwind refactor (swap all possible css styles for tailwind classes)
     - clear form after submit (especially images cos they could stack..)
     - proper auto-complete + ease of use UI

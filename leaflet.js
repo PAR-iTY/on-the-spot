@@ -7,6 +7,9 @@ let mymap;
 
 window.addEventListener('DOMContentLoaded', e => {
   // mapbox tiler and general map-click function
+  // need to make the default coord + zoom value more responsive...
+  // mobile needs portrait shot of all of NZ
+  // landscape screens need shot of all of NZ plus some of AU
   mymap = L.map('mapid').setView([-41.789741, 172.424886], 6);
 
   L.tileLayer(
