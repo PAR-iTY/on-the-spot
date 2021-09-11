@@ -6,8 +6,8 @@
 let mymap;
 
 window.addEventListener('DOMContentLoaded', e => {
-  // mapbox tiler and general map-click function.
-  mymap = L.map('mapid').setView([-40.246051, 162.817383], 4);
+  // mapbox tiler and general map-click function
+  mymap = L.map('mapid').setView([-41.789741, 172.424886], 6);
 
   L.tileLayer(
     'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
