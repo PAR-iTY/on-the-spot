@@ -21,7 +21,7 @@ body {
 
 /* Leaflet needs a map height */
 #mapid {
-  height: 60%;
+  min-height: 70%;
   width: 100%;
   margin: 1rem 0;
 }
