@@ -18,16 +18,17 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
-    <!-- FORMSPREE CSS -->
-    <!-- <link rel="stylesheet" href="./assets/temp/form-reset.css" /> -->
+    <!-- FileSaver.js [dev-only: replace / remove] -->
+    <!-- <script src="./modules/temp/FileSaver.js"></script> -->
     <!-- TAILWIND CSS [dev-only: replace with npm] -->
     <link
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
       rel="stylesheet"
     />
     <!-- customisations -->
-    <script src="./leaflet.js"></script>
-    <script src="./main.js"></script>
+    <script type="module" src="./modules/utils.js"></script>
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./leaflet.js"></script>
     <link rel="stylesheet" href="./style.css" />
     <title>On The Spot | Skate Map</title>
   </head>
@@ -51,7 +52,7 @@
       </h1>
 
       <h3 class="block tracking-wide mb-2">
-        1. find where your spot should be on the map and click
+        1. click where your spot should be on the map
       </h3>
       <div id="mapid"></div>
 
@@ -81,7 +82,7 @@
               name
             </label>
             <input
-            required
+              required
               name="name"
               id="name"
               autocomplete="name"
@@ -132,7 +133,8 @@
                 sm:w-min
                 bg-gray-200
                 text-gray-700
-                border border-red-500
+                border
+                border-blue-700
                 rounded
                 py-3
                 px-4
@@ -250,7 +252,8 @@
                 sm:w-min
                 bg-gray-200
                 text-gray-700
-                border border-gray-200
+                border
+                border-blue-700
                 rounded
                 py-3
                 px-4
@@ -262,7 +265,62 @@
             />
           </div>
 
+
+
           <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+            <label
+              class="
+              appearance-none
+                w-full
+                sm:w-min
+                block
+                bg-gray-200
+                text-gray-700
+                border
+                border-blue-700
+                rounded
+                py-3
+                px-4
+                mb-3
+                leading-tight
+                hover:outline-none hover:bg-white
+                cursor-pointer
+                "
+                for="picture"
+                >
+                <!-- block
+                  shadow-md
+              uppercase
+              tracking-wide
+              text-gray-700 text-xs
+              font-bold
+              mb-2
+              items-center
+              flex
+              flex-col
+              py-3
+          rounded-md
+          shadow-md
+          cursor-pointer
+          hover:bg-purple-600
+          hover:text-white
+          text-purple-600
+          ease-linear
+          transition-all
+          duration-150 -->
+
+  <!-- this is for some icon-library -->
+  <!-- <i class="fas fa-cloud-upload-alt fa-3x"></i> -->
+  <span class="text-gray-700">add picture</span>
+  <input type="file" class="hidden" id="picture" placeholder="add picture"
+  type="file"
+  accept="image/png, image/jpeg"
+  multiple
+  autocomplete="picture" />
+</label>
+          </div>
+          <!-- <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+
             <label
               class="
                 block
@@ -299,7 +357,7 @@
               accept="image/png, image/jpeg"
               multiple
             />
-          </div>
+          </div> -->
             <div class="w-full sm:w-min md:w-1/3 px-3 md:mb-0">
               <img class="img-preview" src="" alt="spot picture preview" />
             </div>
@@ -316,7 +374,7 @@
                 sm:w-min
                 bg-gray-200
                 text-gray-700
-                border border-red-500
+                border
                 rounded
                 py-3
                 px-4
@@ -324,6 +382,9 @@
                 leading-tight
                 focus:outline-none focus:bg-white
                 hover:bg-pink-600 hover:text-white
+                ease-linear
+                transition-all
+                duration-150
               "
               type="submit"
               value="add"
@@ -333,8 +394,7 @@
           </div>
         </div>
         <!-- hidden img data must be placed within form -->
-    <textarea id="hidden-base64" name="base64"></textarea>
-
+        <textarea id="hidden-base64" name="base64"></textarea>
       </form>
     </div>
   </body>

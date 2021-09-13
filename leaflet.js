@@ -2,10 +2,15 @@
  * Created by yawno on 25/11/2017.
  */
 
-// being a dirty globalist...for now...
-let mymap;
+import { parseCoord } from './modules/utils.js';
 
-window.addEventListener('DOMContentLoaded', e => {
+// being a dirty globalist...for now...
+let mymap, lat, lng;
+
+window.addEventListener('DOMContentLoaded', () => {
+  lat = document.getElementById('latitude');
+  lng = document.getElementById('longitude');
+
   // mapbox tiler and general map-click function
   // need to make the default coord + zoom value more responsive...
   // mobile needs portrait shot of all of NZ
@@ -32,9 +37,10 @@ window.addEventListener('DOMContentLoaded', e => {
 const onMapClick = e => {
   var popup = L.popup({ maxHeight: 300 });
 
-  // use prepended '+' to do some bit-magic (drops zero's and forces float type)
-  document.getElementById('latitude').value = +e.latlng.lat.toFixed(6);
-  document.getElementById('longitude').value = +e.latlng.lng.toFixed(6);
+  lat.value = parseCoord(e.latlng.lat);
+  lng.value = parseCoord(e.latlng.lng);
+  // lat.setAttribute('value', e.latlng.lat);
+  // lng.setAttribute('value', e.latlng.lng);
 
   popup
     .setLatLng(e.latlng)
