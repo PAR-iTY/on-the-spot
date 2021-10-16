@@ -1,5 +1,7 @@
-// not working currently
-const observer = new MutationObserver(mutations => {
+const parseCoord = coord => +parseFloat(coord).toFixed(6);
+
+const handleMutation = mutations => {
+  console.log('[mutation observer]');
   // generalisable use-case for picking up many mutation types
   for (const mutation of mutations) {
     // screen for irrelevant values (could paramaterise 'value')
@@ -8,13 +10,20 @@ const observer = new MutationObserver(mutations => {
       continue;
     }
 
-    console.log(mutation.target.name, '=', mutation.target.value);
-    mutation.target.value = parseCoord(mutation.target.value);
-    console.log(mutation.target.name, '=', mutation.target.value);
-  }
-});
+    console.log(
+      mutation.target.name,
+      '=',
+      mutation.target.attributes.value.nodeValue
+    );
+    // nodeValue is a string but parseCoord handles that
+    // console.log('[parseCoord]:', mutation.target.attributes.value.nodeValue);
 
-// global function to use from leaflet.js too?
-const parseCoord = coord => +parseFloat(coord).toFixed(6);
+    mutation.target.value = parseCoord(
+      mutation.target.attributes.value.nodeValue
+    );
+  }
+};
+
+let observer = new MutationObserver(handleMutation);
 
 export { observer, parseCoord };

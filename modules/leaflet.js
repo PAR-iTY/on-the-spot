@@ -2,9 +2,9 @@
  * Created by yawno on 25/11/2017.
  */
 
-import { parseCoord } from './modules/utils.js';
-
 // being a dirty globalist...for now...
+// wierd alternative: move lat, lng values into utils??
+// no...no i cannot bear it...must...functionalise! ..eventually
 let mymap, lat, lng;
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -37,10 +37,20 @@ window.addEventListener('DOMContentLoaded', () => {
 const onMapClick = e => {
   var popup = L.popup({ maxHeight: 300 });
 
-  lat.value = parseCoord(e.latlng.lat);
-  lng.value = parseCoord(e.latlng.lng);
-  // lat.setAttribute('value', e.latlng.lat);
-  // lng.setAttribute('value', e.latlng.lng);
+  // lat, lng are global refs to input elements
+
+  // will not trigger an input event (because programmatic)
+  // will not trigger a mutation observer (because not an attribute)
+  // lat.value = e.latlng.lat;
+  // lng.value = e.latlng.lng;
+  // trigger event to parse coord from main.js function call
+  // lat.dispatchEvent(new Event('input'));
+  // lng.dispatchEvent(new Event('input'));
+
+  // will activate a mutation observer
+  // observer runs parseCoord for us
+  lat.setAttribute('value', e.latlng.lat);
+  lng.setAttribute('value', e.latlng.lng);
 
   popup
     .setLatLng(e.latlng)

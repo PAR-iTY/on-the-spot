@@ -1,4 +1,4 @@
-import { parseCoord } from './modules/utils.js';
+import { observer, parseCoord } from './utils.js';
 
 // global reader object (shared between all functions atm)
 const reader = new FileReader();
@@ -49,6 +49,7 @@ const handleReader = () => {
 
 // handles coords by calling utils.js function
 const handleCoords = e => {
+  console.log('[input event --> handleCoords]', e.target.value);
   e.target.value = parseCoord(e.target.value);
 };
 
@@ -62,22 +63,14 @@ window.addEventListener('DOMContentLoaded', e => {
   reader.addEventListener('load', handleReader, false);
 
   // listen for user input coords (will not catch programmatic input changes)
-  document
-    .getElementById('latitude')
-    .addEventListener('input', handleCoords, false);
-  document
-    .getElementById('longitude')
-    .addEventListener('input', handleCoords, false);
-});
+  // console.log('lat, lng globals from leaflet.js?', lat, lng);
+  let lat = document.getElementById('latitude');
+  lat.addEventListener('input', handleCoords, false);
 
-// use mutations and .setAttribute to listen for programmatic value changes across scripts
-// seems to have an issue with the 'value' attribute vs. property...
-// wierdly works if i double call observer using both .value and setAttribute
-// observer.observe(document.getElementById('latitude'), {
-//   attributes: true,
-//   attributeFilter: ['value']
-// });
-// observer.observe(document.getElementById('longitude'), {
-//   attributes: true,
-//   attributeFilter: ['value']
-// });
+  let lng = document.getElementById('longitude');
+  lng.addEventListener('input', handleCoords, false);
+
+  // mutation observer allows programmatic 'input' value change from leaflet.js
+  observer.observe(lat, { attributes: true, attributeFilter: ['value'] });
+  observer.observe(lng, { attributes: true, attributeFilter: ['value'] });
+});

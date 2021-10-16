@@ -27,8 +27,8 @@
     />
     <!-- customisations -->
     <script type="module" src="./modules/utils.js"></script>
-    <script type="module" src="./main.js"></script>
-    <script type="module" src="./leaflet.js"></script>
+    <script type="module" src="./modules/leaflet.js"></script>
+    <script type="module" src="./modules/main.js"></script>
     <link rel="stylesheet" href="./style.css" />
     <title>On The Spot | Skate Map</title>
   </head>
@@ -48,18 +48,16 @@
           text-pink-600
         "
       >
-        On The Spot | Skate Map
+        on the spot | skate map
       </h1>
 
       <h3 class="block tracking-wide mb-2">
-        1. click where your spot should be on the map
+        1. find your skate spot and click to add coordinates
       </h3>
       <div id="mapid"></div>
 
       <!-- TAILWIND CSS FORM -->
-      <h3 class="block tracking-wide mb-2">
-        2. fill out some details about your spot
-      </h3>
+      <h3 class="block tracking-wide mb-2">2. add some details</h3>
 
       <form
         class="w-full max-w-lg"
@@ -108,7 +106,45 @@
               Please fill out this field.
             </p> -->
           </div>
+
           <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
+            <label
+              class="
+                block
+                uppercase
+                tracking-wide
+                text-gray-700 text-xs
+                font-bold
+                mb-2
+              "
+              for="city"
+            >
+              city
+            </label>
+            <input
+              name="city"
+              id="city"
+              autocomplete="city"
+              class="
+                appearance-none
+                block
+                w-full
+                sm:w-min
+                bg-gray-200
+                text-gray-700
+                border border-blue-700
+                rounded
+                py-3
+                px-4
+                leading-tight
+                focus:outline-none focus:bg-white focus:border-gray-500
+              "
+              type="text"
+              placeholder="spot city"
+            />
+          </div>
+
+          <!-- <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="
                 block
@@ -133,8 +169,7 @@
                 sm:w-min
                 bg-gray-200
                 text-gray-700
-                border
-                border-blue-700
+                border border-blue-700
                 rounded
                 py-3
                 px-4
@@ -145,8 +180,8 @@
               type="email"
               placeholder="your email"
             />
-          </div>
-          <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+          </div> -->
+          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="
                 block
@@ -161,7 +196,7 @@
               latitude
             </label>
             <input
-            required
+              required
               name="latitude"
               id="latitude"
               autocomplete="latitude"
@@ -188,7 +223,7 @@
               Please fill out this field.
             </p> -->
           </div>
-          <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
             <label
               class="
                 block
@@ -203,7 +238,7 @@
               longitude
             </label>
             <input
-            required
+              required
               name="longitude"
               id="longitude"
               autocomplete="longitude"
@@ -227,7 +262,8 @@
               placeholder="longitude"
             />
           </div>
-          <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+
+          <div class="w-full sm:w-min md:w-1/1 px-3 mb-6 md:mb-0 text-center">
             <label
               class="
                 block
@@ -237,106 +273,9 @@
                 font-bold
                 mb-2
               "
-              for="city"
+              >picture</label
             >
-              city
-            </label>
-            <input
-              name="city"
-              id="city"
-              autocomplete="city"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border
-                border-blue-700
-                rounded
-                py-3
-                px-4
-                leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500
-              "
-              type="text"
-              placeholder="wellington"
-            />
-          </div>
-
-
-
-          <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
             <label
-              class="
-              appearance-none
-                w-full
-                sm:w-min
-                block
-                bg-gray-200
-                text-gray-700
-                border
-                border-blue-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                hover:outline-none hover:bg-white
-                cursor-pointer
-                "
-                for="picture"
-                >
-                <!-- block
-                  shadow-md
-              uppercase
-              tracking-wide
-              text-gray-700 text-xs
-              font-bold
-              mb-2
-              items-center
-              flex
-              flex-col
-              py-3
-          rounded-md
-          shadow-md
-          cursor-pointer
-          hover:bg-purple-600
-          hover:text-white
-          text-purple-600
-          ease-linear
-          transition-all
-          duration-150 -->
-
-  <!-- this is for some icon-library -->
-  <!-- <i class="fas fa-cloud-upload-alt fa-3x"></i> -->
-  <span class="text-gray-700">add picture</span>
-  <input type="file" class="hidden" id="picture" placeholder="add picture"
-  type="file"
-  accept="image/png, image/jpeg"
-  multiple
-  autocomplete="picture" />
-</label>
-          </div>
-          <!-- <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
-
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="picture"
-            >
-              picture
-            </label>
-            <input
-              id="picture"
-              autocomplete="picture"
               class="
                 appearance-none
                 w-full
@@ -344,25 +283,37 @@
                 block
                 bg-gray-200
                 text-gray-700
-                border border-red-500
+                border border-blue-700
                 rounded
                 py-3
                 px-4
                 mb-3
                 leading-tight
                 focus:outline-none focus:bg-white
+                hover:bg-pink-300 hover:text-white
+                ease-linear
+                transition-all
+                duration-150
+                cursor-pointer
               "
-              placeholder="add picture"
-              type="file"
-              accept="image/png, image/jpeg"
-              multiple
-            />
-          </div> -->
-            <div class="w-full sm:w-min md:w-1/3 px-3 md:mb-0">
-              <img class="img-preview" src="" alt="spot picture preview" />
-            </div>
+              for="picture"
+              >spot picture
+              <input
+                type="file"
+                class="hidden"
+                id="picture"
+                placeholder="spot picture"
+                type="file"
+                accept="image/png, image/jpeg"
+                multiple
+                autocomplete="picture"
+              />
+            </label>
           </div>
-
+          <div class="w-full sm:w-min md:w-1/1 px-3 md:mb-0">
+            <img class="img-preview" src="" alt="spot picture preview" />
+          </div>
+          <!-- </div> -->
           <div class="w-full sm:w-min md:w-1/1 px-3 mb-6 md:mb-0">
             <h3 class="block tracking-wide mb-2">3. add spot</h3>
             <button
@@ -399,3 +350,66 @@
     </div>
   </body>
 </html>
+
+<!-- <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
+  <label
+    class="
+      block
+      uppercase
+      tracking-wide
+      text-gray-700 text-xs
+      font-bold
+      mb-2
+    "
+    for="picture"
+  >
+    picture
+  </label>
+  <input
+    id="picture"
+    autocomplete="picture"
+    class="
+      appearance-none
+      w-full
+      sm:w-min
+      block
+      bg-gray-200
+      text-gray-700
+      border border-red-500
+      rounded
+      py-3
+      px-4
+      mb-3
+      leading-tight
+      focus:outline-none focus:bg-white
+    "
+    placeholder="spot picture"
+    type="file"
+    accept="image/png, image/jpeg"
+    multiple
+  />
+</div> -->
+
+<!-- block
+  shadow-md
+  uppercase
+  tracking-wide
+  text-gray-700 text-xs
+  font-bold
+  mb-2
+  items-center
+  flex
+  flex-col
+  py-3
+  rounded-md
+  shadow-md
+  cursor-pointer
+  hover:bg-purple-600
+  hover:text-white
+  text-purple-600
+  ease-linear
+  transition-all
+  duration-150
+-->
+<!-- this is for some icon-library -->
+<!-- <i class="fas fa-cloud-upload-alt fa-3x"></i> -->
