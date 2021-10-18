@@ -1,40 +1,45 @@
-import { observer, parseCoord } from './utils.js';
+import { observer } from './utils.js';
 
 // global reader object (shared between all functions atm)
 const reader = new FileReader();
 
 const handleImg = e => {
+  // one image per spot for now
   const file = e.target.files[0];
 
   if (file) {
+    // sanity check file size due to base64 encoding
     if (file.size > 2097152) {
       console.error('file size must be under 2 megabytes');
+
       alert('file size must be under 2 megabytes');
       return;
     }
     try {
       // pretty sure this is async -> wait for reader load event to fire
       // alternatives: reader.readAsBinaryString(file); or ArrayBuffer...
-      reader.readAsDataURL(file);
+      reader.readAsBinaryString(file);
+      // reader.readAsDataURL(file);
     } catch (error) {
-      console.error('[base64 error]:', error);
+      console.error('[file error]:', error);
       return;
     }
   } else {
-    console.error('[file error]:', file);
+    console.error('[no file error]:', file);
     return;
   }
 };
 
 const handleReader = () => {
   if (reader.result) {
-    // console.log('binary string:', reader.result);
+    console.log('binary string:', reader.result.substring(0, 32));
+
     // console.log('got a base64 result', reader.result.substring(0, 18));
-    const preview = document.querySelector('img.img-preview');
+    // const preview = document.querySelector('img.img-preview');
 
-    preview.src = reader.result;
+    // preview.src = reader.result;
 
-    preview.style.display = 'inline-block';
+    // preview.style.display = 'inline-block';
 
     // add this to hidden textarea element
     document.getElementById('hidden-base64').value = reader.result;
@@ -47,10 +52,12 @@ const handleReader = () => {
   }
 };
 
-// handles coords by calling utils.js function
-const handleCoords = e => {
-  console.log('[input event --> handleCoords]', e.target.value);
-  e.target.value = parseCoord(e.target.value);
+// handles coord by calling utils.js functions
+const handleCoord = e => {
+  // console.log('[input event --> handleCoord]', e.target.value);
+
+  // trigger mutation oberver to run parseCoord
+  e.target.setAttribute('value', e.target.value);
 };
 
 window.addEventListener('DOMContentLoaded', e => {
@@ -64,11 +71,11 @@ window.addEventListener('DOMContentLoaded', e => {
 
   // listen for user input coords (will not catch programmatic input changes)
   // console.log('lat, lng globals from leaflet.js?', lat, lng);
-  let lat = document.getElementById('latitude');
-  lat.addEventListener('input', handleCoords, false);
+  const lat = document.getElementById('latitude');
+  lat.addEventListener('input', handleCoord, false);
 
-  let lng = document.getElementById('longitude');
-  lng.addEventListener('input', handleCoords, false);
+  const lng = document.getElementById('longitude');
+  lng.addEventListener('input', handleCoord, false);
 
   // mutation observer allows programmatic 'input' value change from leaflet.js
   observer.observe(lat, { attributes: true, attributeFilter: ['value'] });

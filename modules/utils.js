@@ -10,13 +10,12 @@ const handleMutation = mutations => {
       continue;
     }
 
+    // nodeValue is a string but parseCoord handles that
     console.log(
       mutation.target.name,
       '=',
       mutation.target.attributes.value.nodeValue
     );
-    // nodeValue is a string but parseCoord handles that
-    // console.log('[parseCoord]:', mutation.target.attributes.value.nodeValue);
 
     mutation.target.value = parseCoord(
       mutation.target.attributes.value.nodeValue
@@ -24,6 +23,6 @@ const handleMutation = mutations => {
   }
 };
 
-let observer = new MutationObserver(handleMutation);
+const observer = new MutationObserver(handleMutation);
 
 export { observer, parseCoord };
