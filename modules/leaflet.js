@@ -71,8 +71,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   await fetch('../assets/data/user-spots.geojson')
     .then(response => response.json())
     .then(data => {
-      L.geoJSON(data, config).addTo(mymap);
       console.log(data);
+      L.geoJSON(data, config).addTo(mymap);
     });
 
   mymap.on('click', onMapClick);

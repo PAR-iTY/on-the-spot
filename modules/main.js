@@ -32,14 +32,14 @@ const handleImg = e => {
 
 const handleReader = () => {
   if (reader.result) {
-    console.log('binary string:', reader.result.substring(0, 32));
+    // console.log('binary string:', reader.result.substring(0, 32));
 
     // console.log('got a base64 result', reader.result.substring(0, 18));
-    // const preview = document.querySelector('img.img-preview');
+    const preview = document.querySelector('img.img-preview');
 
-    // preview.src = reader.result;
+    preview.src = reader.result;
 
-    // preview.style.display = 'inline-block';
+    preview.style.display = 'inline-block';
 
     // add this to hidden textarea element
     document.getElementById('hidden-base64').value = reader.result;
