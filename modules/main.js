@@ -9,8 +9,10 @@ const handleImg = e => {
 
   if (file) {
     // sanity check file size due to base64 encoding
-    if (file.size > 2097152) {
-      console.error('file size must be under 2 megabytes');
+    // 2 mb in binary = 2097152
+    // 3 mb in binary = 3145728
+    if (file.size > 3145728) {
+      console.error('file size must be under 3 megabytes');
 
       alert('file size must be under 2 megabytes');
       return;
@@ -18,8 +20,8 @@ const handleImg = e => {
     try {
       // pretty sure this is async -> wait for reader load event to fire
       // alternatives: reader.readAsBinaryString(file); or ArrayBuffer...
-      reader.readAsBinaryString(file);
-      // reader.readAsDataURL(file);
+      // reader.readAsBinaryString(file);
+      reader.readAsDataURL(file);
     } catch (error) {
       console.error('[file error]:', error);
       return;
@@ -33,13 +35,17 @@ const handleImg = e => {
 const handleReader = () => {
   if (reader.result) {
     // console.log('binary string:', reader.result.substring(0, 32));
-
     // console.log('got a base64 result', reader.result.substring(0, 18));
+
     const preview = document.querySelector('img.img-preview');
+
+    const toggle = document.querySelector('div.img-preview-toggle');
 
     preview.src = reader.result;
 
-    preview.style.display = 'inline-block';
+    toggle.style.visibility = 'visible';
+
+    // preview.style.display = 'inline-block';
 
     // add this to hidden textarea element
     document.getElementById('hidden-base64').value = reader.result;
@@ -50,6 +56,22 @@ const handleReader = () => {
     );
     return;
   }
+};
+
+// const wipeReader = () ={};
+
+// handles clearing form on submit
+const handleSubmit = e => {
+  console.log('submit event', e);
+
+  // remove image preview
+  document.querySelector('img.img-preview').src = '';
+
+  document.querySelector('div.img-preview-toggle').style.visibility = 'hidden';
+  // preview.style.display = 'inline-block';
+
+  // reset form? may interfere with formspree
+  // document.getElementById('spot-form').reset();
 };
 
 // handles coord by calling utils.js functions
@@ -80,4 +102,7 @@ window.addEventListener('DOMContentLoaded', e => {
   // mutation observer allows programmatic 'input' value change from leaflet.js
   observer.observe(lat, { attributes: true, attributeFilter: ['value'] });
   observer.observe(lng, { attributes: true, attributeFilter: ['value'] });
+
+  // wary of this interferreing with formspree somehow
+  document.getElementById('submit').addEventListener('submit', handleSubmit);
 });

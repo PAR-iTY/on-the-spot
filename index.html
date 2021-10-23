@@ -5,22 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <!-- Leaflet CSS -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-    <!-- Make sure Leaflet JS is AFTER Leaflet's CSS -->
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
-    <!-- FileSaver.js [dev-only: replace / remove] -->
-    <!-- <script src="./modules/temp/FileSaver.js"></script> -->
-    <!-- TAILWIND CSS [dev-only: replace with npm] -->
+    <!-- Leaflet Local [dev-only: replace with npm] -->
+    <script src="./libraries/leaflet/leaflet.js"></script>
+    <link rel="stylesheet" href="./libraries/leaflet/leaflet.css" />
+    <!-- Tailwind CDN [dev-only: replace with npm] -->
     <link
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
       rel="stylesheet"
@@ -33,381 +21,293 @@
     <title>On The Spot | Skate Map</title>
   </head>
 
-  <body>
-    <div class="container">
+  <body class="bg-gray-800">
+    <div class="container text-pink-600">
       <h1
         class="
           text-3x1
+          xs:font-bold
           sm:text-4xl
+          md:
+          font-normal
           md:text-5xl
           block
           uppercase
           tracking-widest
           mb-2
           w-full
-          text-pink-600
         "
       >
         on the spot | skate map
       </h1>
 
-      <h3 class="block tracking-wide mb-2">
-        1. find your skate spot and click to add coordinates
-      </h3>
-      <div id="mapid"></div>
-
-      <!-- TAILWIND CSS FORM -->
-      <h3 class="block tracking-wide mb-2">2. add some details</h3>
-
-      <form
-        class="w-full max-w-lg"
-        action="https://formspree.io/f/mzbyyqbz"
-        method="POST"
-      >
-        <div class="flex flex-wrap -mx-3 mb-6">
-          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="name"
-            >
-              name
-            </label>
-            <input
-              required
-              name="name"
-              id="name"
-              autocomplete="name"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border border-red-500
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              type="text"
-              placeholder="spot name"
-            />
-            <!-- <p class="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p> -->
-          </div>
-
-          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="city"
-            >
-              city
-            </label>
-            <input
-              name="city"
-              id="city"
-              autocomplete="city"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border border-blue-700
-                rounded
-                py-3
-                px-4
-                leading-tight
-                focus:outline-none focus:bg-white focus:border-gray-500
-              "
-              type="text"
-              placeholder="spot city"
-            />
-          </div>
-
-          <!-- <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="_replyto"
-            >
-              email
-            </label>
-            <input
-              name="_replyto"
-              id="_replyto"
-              autocomplete="_replyto"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border border-blue-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              type="email"
-              placeholder="your email"
-            />
-          </div> -->
-          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="name"
-            >
-              latitude
-            </label>
-            <input
-              required
-              name="latitude"
-              id="latitude"
-              autocomplete="latitude"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border border-red-500
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              type="number"
-              step="any"
-              placeholder="latitude"
-            />
-            <!-- <p class="text-red-500 text-xs italic">
-              Please fill out this field.
-            </p> -->
-          </div>
-          <div class="w-full sm:w-min md:w-1/2 px-3 mb-6 md:mb-0">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              for="longitude"
-            >
-              longitude
-            </label>
-            <input
-              required
-              name="longitude"
-              id="longitude"
-              autocomplete="longitude"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border border-red-500
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-              "
-              type="number"
-              step="any"
-              placeholder="longitude"
-            />
-          </div>
-
-          <div class="w-full sm:w-min md:w-1/1 px-3 mb-6 md:mb-0 text-center">
-            <label
-              class="
-                block
-                uppercase
-                tracking-wide
-                text-gray-700 text-xs
-                font-bold
-                mb-2
-              "
-              >picture</label
-            >
-            <label
-              class="
-                appearance-none
-                w-full
-                sm:w-min
-                block
-                bg-gray-200
-                text-gray-700
-                border border-blue-700
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-                hover:bg-pink-300 hover:text-white
-                ease-linear
-                transition-all
-                duration-150
-                cursor-pointer
-              "
-              for="picture"
-              >spot picture
-              <input
-                type="file"
-                class="hidden"
-                id="picture"
-                placeholder="spot picture"
-                type="file"
-                accept="image/png, image/jpeg"
-                autocomplete="picture"
-              />
-            </label>
-          </div>
-          <div class="w-full sm:w-min md:w-1/1 px-3 md:mb-0">
-            <img class="img-preview" src="" alt="spot picture preview" />
-          </div>
-          <!-- </div> -->
-          <div class="w-full sm:w-min md:w-1/1 px-3 mb-6 md:mb-0">
-            <h3 class="block tracking-wide mb-2">3. add spot</h3>
-            <button
-              id="submit"
-              class="
-                appearance-none
-                block
-                w-full
-                sm:w-min
-                bg-gray-200
-                text-gray-700
-                border
-                rounded
-                py-3
-                px-4
-                mb-3
-                leading-tight
-                focus:outline-none focus:bg-white
-                hover:bg-pink-600 hover:text-white
-                ease-linear
-                transition-all
-                duration-150
-              "
-              type="submit"
-              value="add"
-            >
-              add spot
-            </button>
-          </div>
+      
+      
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div>
+          <h3 class="block tracking-wide mb-2">1. find your spot and click</h3>
+          <div id="mapid"></div>
         </div>
-        <!-- hidden img data must be placed within form -->
-        <textarea id="hidden-base64" name="base64"></textarea>
-      </form>
+        <div>
+          <!-- TAILWIND CSS FORM -->
+          <h3 class="block tracking-wide mb-2">2. add some details</h3>
+
+          <form
+            id="spot-form"
+            class="w-full"
+            action="https://formspree.io/f/xdoyvdyy"
+            method="POST"
+          >
+          <!-- <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="sm:w-min md:w-1/2 px-3 mb-2 md:mb-0"> -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-5">
+              <div>
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-300 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="name"
+                >
+                  name
+                </label>
+                <input
+                  required
+                  name="name"
+                  id="name"
+                  autocomplete="name"
+                  class="
+                    appearance-none
+                    block
+                    sm:w-min
+                    w-full
+                    bg-gray-900
+                    text-gray-300
+                    border border-pink-600
+                    rounded
+                    py-3
+                    px-4
+                    leading-tight
+                    focus:outline-none focus:placeholder-gray-300
+                  "
+                  type="text"
+                  placeholder="spot name"
+                />
+                <!-- <p class="text-pink-600 text-xs italic">
+                Please fill out this field.
+              </p> -->
+              </div>
+
+              <div>
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-300 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="city"
+                >
+                  city
+                </label>
+                <input
+                  name="city"
+                  id="city"
+                  autocomplete="city"
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    sm:w-min
+                    bg-gray-900
+                    text-gray-300
+                    border border-blue-700
+                    rounded
+                    py-3
+                    px-4
+                    leading-tight
+                    focus:outline-none
+                    focus:placeholder-gray-300
+                  "
+                  type="text"
+                  placeholder="spot city"
+                />
+              </div>
+              <div>
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-300 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="name"
+                >
+                  latitude
+                </label>
+                <input
+                  required
+                  name="latitude"
+                  id="latitude"
+                  autocomplete="latitude"
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    sm:w-min
+                    bg-gray-900
+                    text-gray-300
+                    border border-pink-600
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    pointer-events-none
+                  "
+                  readonly
+                  type="number"
+                  step="any"
+                  placeholder="latitude"
+                />
+                <!-- <p class="text-pink-600 text-xs italic">
+                Please fill out this field.
+              </p> -->
+              </div>
+              <div>
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-300 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  for="longitude"
+                >
+                  longitude
+                </label>
+                <input
+                  required
+                  name="longitude"
+                  id="longitude"
+                  autocomplete="longitude"
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    sm:w-min
+                    border border-pink-600
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    pointer-events-none
+                    bg-gray-900
+                    text-gray-300
+                  "
+                  readonly
+                  type="number"
+                  step="any"
+                  placeholder="longitude"
+                />
+              </div>
+
+              <div>
+                <label
+                  class="
+                    block
+                    uppercase
+                    tracking-wide
+                    text-gray-300 text-xs
+                    font-bold
+                    mb-2
+                  "
+                  >picture</label
+                >
+                <label
+                  class="
+                    appearance-none
+                    w-full
+                    sm:w-min
+                    block
+                    border border-blue-700
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    hover:bg-blue-700 hover:text-white
+                    ease-linear
+                    transition-all
+                    duration-150
+                    cursor-pointer
+                    bg-gray-900
+                    text-gray-300
+                    text-center
+                  "
+                  for="picture"
+                  >spot picture
+                  <input
+                    type="file"
+                    class="hidden"
+                    id="picture"
+                    placeholder="spot picture"
+                    type="file"
+                    accept="image/png, image/jpeg"
+                    autocomplete="picture"
+                  />
+                </label>
+              </div>
+              <div class="img-preview-toggle">
+                <img class="img-preview" src="" alt="spot picture preview" />
+              </div>
+              <div>
+                <h3 class="block tracking-wide mb-2">3. add spot</h3>
+                <button
+                  id="submit"
+                  class="
+                    appearance-none
+                    block
+                    w-full
+                    sm:w-min
+                    bg-gray-900
+                    text-gray-300
+                    border border-pink-600
+                    rounded
+                    py-3
+                    px-4
+                    mb-3
+                    leading-tight
+                    hover:border
+                    focus:text-white
+                    hover:bg-pink-600 hover:text-white
+                    ease-linear
+                    transition-all
+                    duration-150
+                  "
+                  type="submit"
+                  value="add"
+                >
+                  add spot
+                </button>
+              </div>
+            </div>
+          <!-- hidden img data must be placed within form -->
+          <textarea id="hidden-base64" name="base64"></textarea>
+        </form>
+      </div>
     </div>
   </body>
 </html>
-
-<!-- <div class="w-full sm:w-min md:w-1/3 px-3 mb-6 md:mb-0">
-  <label
-    class="
-      block
-      uppercase
-      tracking-wide
-      text-gray-700 text-xs
-      font-bold
-      mb-2
-    "
-    for="picture"
-  >
-    picture
-  </label>
-  <input
-    id="picture"
-    autocomplete="picture"
-    class="
-      appearance-none
-      w-full
-      sm:w-min
-      block
-      bg-gray-200
-      text-gray-700
-      border border-red-500
-      rounded
-      py-3
-      px-4
-      mb-3
-      leading-tight
-      focus:outline-none focus:bg-white
-    "
-    placeholder="spot picture"
-    type="file"
-    accept="image/png, image/jpeg"
-  />
-</div> -->
-
-<!-- block
-  shadow-md
-  uppercase
-  tracking-wide
-  text-gray-700 text-xs
-  font-bold
-  mb-2
-  items-center
-  flex
-  flex-col
-  py-3
-  rounded-md
-  shadow-md
-  cursor-pointer
-  hover:bg-purple-600
-  hover:text-white
-  text-purple-600
-  ease-linear
-  transition-all
-  duration-150
--->
-<!-- this is for some icon-library -->
-<!-- <i class="fas fa-cloud-upload-alt fa-3x"></i> -->

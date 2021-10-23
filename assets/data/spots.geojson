@@ -1,0 +1,90 @@
+{
+  "type": "FeatureCollection",
+  "name": "on-the-spot-data",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.784761, -41.29201]
+      },
+      "properties": {
+        "id": "dc514585",
+        "name": "avoid at all cost",
+        "city": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [169.135332, -44.696637]
+      },
+      "properties": {
+        "id": "81cb0842",
+        "name": "new world gap",
+        "city": "wanaka"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [170.503582, -45.874107]
+      },
+      "properties": {
+        "id": "833b943c",
+        "name": "octagon",
+        "city": "dunedin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [170.503582, -45.874107]
+      },
+      "properties": {
+        "id": "f2ea4bd3",
+        "name": "octagon",
+        "city": "dunedin"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.797713, -41.230347]
+      },
+      "properties": {
+        "id": "da5764bd",
+        "name": "college verts",
+        "city": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [170.62197, -45.820695]
+      },
+      "properties": {
+        "id": "d1ff6da3",
+        "name": "beep boop",
+        "city": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [171.210574, -44.371854]
+      },
+      "properties": {
+        "id": "b9dedcf6",
+        "name": "timaz test",
+        "city": "timaz hard"
+      }
+    }
+  ]
+}

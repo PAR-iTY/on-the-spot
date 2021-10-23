@@ -1,12 +1,13 @@
-html,
-body {
-  max-width: 100vw;
-  max-height: 100vh;
-  padding: 0;
-  margin: 0;
-  border: 0;
-  background-color: black;
+/*continue migration to tailwind css */
+
+/* body, */
+html {
   font-family: Consolas, monaco, monospace;
+  /* max-width: 100vw;
+  max-height: 100vh; */
+  /* padding: 0;
+  margin: 0;
+  border: 0; */
 }
 
 .container {
@@ -16,26 +17,45 @@ body {
   max-width: 1280px;
   margin: 1rem auto 0 auto;
   /* background-color: rgb(32, 32, 32); */
-  color: red;
+  /* color: red; */
 }
 
 /* Leaflet needs a map height */
 #mapid {
-  min-height: 70%;
+  min-height: 15rem;
+  height: 100%;
   width: 100%;
-  margin: 1rem 0;
+  /* margin: 1rem 0; */
+}
+
+.img-preview-toggle {
+  /* display: none; */
+  visibility: hidden;
 }
 
 .img-preview {
   max-height: 150px;
   max-width: 150px;
-  display: none;
 }
 
 #hidden-base64 {
   display: none;
 }
 
-/* #submit {
-
+/* style readonly inputs */
+/* input[readonly] {
+  background-color: #cccccc;
 } */
+
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

@@ -1,7 +1,7 @@
 const parseCoord = coord => +parseFloat(coord).toFixed(6);
 
 const handleMutation = mutations => {
-  console.log('[mutation observer]');
+  // console.log('[mutation observer]');
   // generalisable use-case for picking up many mutation types
   for (const mutation of mutations) {
     // screen for irrelevant values (could paramaterise 'value')
@@ -11,11 +11,11 @@ const handleMutation = mutations => {
     }
 
     // nodeValue is a string but parseCoord handles that
-    console.log(
-      mutation.target.name,
-      '=',
-      mutation.target.attributes.value.nodeValue
-    );
+    // console.log(
+    //   mutation.target.name,
+    //   '=',
+    //   mutation.target.attributes.value.nodeValue
+    // );
 
     mutation.target.value = parseCoord(
       mutation.target.attributes.value.nodeValue
