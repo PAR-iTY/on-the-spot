@@ -29,13 +29,29 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   ).addTo(mymap);
 
+  // apparently, localhost can resolve relative paths from modules/
+  // so the path needs to back ../ to get to assets/
+
+  // github pages resolves that to par-ity.github.io/assets/data/spots.geojson
+  // ie it misses /on-the-spot/
+
+  // luckily localhost and servers can make sense of resolving from root
+  // const spots_file =
+  //   (['localhost', '127.0.0.1', ''].includes(window.location.hostname)
+  //     ? '../'
+  //     : './') + 'assets/data/spots.geojson';
+
+  // console.log('spots_file:', spots_file);
+
   const spots = await fetchJSON('./assets/data/spots.geojson');
 
-  console.log(spots);
+  // console.log(spots);
 
-  // Coordinates in GeoJSON: [longitude, latitude]
-  // Coordinates in Leaflet: [latitude, longitude]
-  L.geoJSON(spots).addTo(mymap);
+  if (spots) {
+    // Coordinates in GeoJSON: [longitude, latitude] --> using this one
+    // Coordinates in Leaflet: [latitude, longitude]
+    L.geoJSON(spots).addTo(mymap);
+  }
 
   mymap.on('click', onMapClick);
 });
@@ -63,7 +79,7 @@ const fetchJSON = async url => {
     return json;
   } catch (error) {
     console.error(error);
-    return;
+    return false;
   }
 };
 

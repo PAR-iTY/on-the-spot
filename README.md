@@ -8,4 +8,3 @@ Experiments:
 - Mutation Observer API to unify user and programmatic events
 - Formspree freemium image-encoding workaround
 - Tailwind CSS, mostly for future development simplicity
--

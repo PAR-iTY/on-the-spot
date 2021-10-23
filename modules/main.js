@@ -69,9 +69,6 @@ const handleSubmit = e => {
 
   document.querySelector('div.img-preview-toggle').style.visibility = 'hidden';
   // preview.style.display = 'inline-block';
-
-  // reset form? may interfere with formspree
-  // document.getElementById('spot-form').reset();
 };
 
 // handles coord by calling utils.js functions
@@ -106,3 +103,20 @@ window.addEventListener('DOMContentLoaded', e => {
   // wary of this interferreing with formspree somehow
   document.getElementById('submit').addEventListener('submit', handleSubmit);
 });
+
+// from https://developers.google.com/web/updates/2018/07/page-lifecycle-api#the-unload-event
+const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload';
+
+addEventListener(
+  terminationEvent,
+  event => {
+    console.log(`terminationEvent: ${event}`);
+    // note: if the browser is able to cache the page, `event.persisted`
+    // is `true`, and the state is frozen rather than terminated.
+
+    // reset form? may interfere with formspree
+    // something crude like a setInterval? better some kind of event?
+    document.getElementById('spot-form').reset();
+  },
+  { capture: true }
+);
