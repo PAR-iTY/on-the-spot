@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
   ).addTo(mymap);
 
-  const spots = await fetchJSON('../assets/data/spots.geojson');
+  const spots = await fetchJSON('./assets/data/spots.geojson');
 
   console.log(spots);
 
