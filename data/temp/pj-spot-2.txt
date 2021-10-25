@@ -1,0 +1,14 @@
+name
+Octagon
+
+_replyto
+pj.wybrow@yahoo.co.nz
+
+latitude
+-45.874107
+
+longitude
+170.503582
+
+city
+Dunedin

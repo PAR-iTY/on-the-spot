@@ -20,22 +20,23 @@
     <link rel="stylesheet" href="./style.css" />
     <title>On The Spot | Skate Map</title>
   </head>
+  <!-- <p class="text-pink-600"> testing</p> -->
+  
 
-  <body class="bg-gray-800">
-    <div class="container text-pink-600">
+  <body class="bg-gray-800 text-pink-600 font-mono w-full grid grid-cols-1 place-items-center">
+    <main class="max-w-screen-xl w-11/12 my-8">
       <h1
         class="
-          text-3x1
-          xs:font-bold
-          sm:text-4xl
-          md:
-          font-normal
-          md:text-5xl
+          font-extrabold
+          md:font-thin
+          lg:font-normal
+          text-xl
+          md:text-4xl
+          xl:text-5xl
           block
           uppercase
-          tracking-widest
-          mb-2
-          w-full
+          tracking-wide
+          mb-5
         "
       >
         on the spot | skate map
@@ -44,10 +45,10 @@
       
       
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <main class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
         <div>
-          <h3 class="block tracking-wide mb-2">1. find your spot and click</h3>
-          <div id="mapid"></div>
+          <h3 class="tracking-wide mb-2">1. find your spot and click</h3>
+          <div class="h-80 md:h-full" id="mapid"></div>
         </div>
         <div>
           <!-- TAILWIND CSS FORM -->
@@ -55,13 +56,12 @@
 
           <form
             id="spot-form"
-            class="w-full"
             action="https://formspree.io/f/xdoyvdyy"
             method="POST"
           >
           <!-- <div class="flex flex-wrap -mx-3 mb-2">
             <div class="sm:w-min md:w-1/2 px-3 mb-2 md:mb-0"> -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-5">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 md:gap-y-5">
               <div>
                 <label
                   class="
@@ -94,6 +94,7 @@
                     px-4
                     leading-tight
                     focus:outline-none focus:placeholder-gray-300
+                    
                   "
                   type="text"
                   placeholder="spot name"
@@ -170,11 +171,11 @@
                     rounded
                     py-3
                     px-4
-                    mb-3
                     leading-tight
-                    pointer-events-none
+                    focus:outline-none
+                    focus:placeholder-gray-300
                   "
-                  readonly
+                  min="-90" max="90"
                   type="number"
                   step="any"
                   placeholder="latitude"
@@ -211,15 +212,15 @@
                     rounded
                     py-3
                     px-4
-                    mb-3
                     leading-tight
-                    pointer-events-none
                     bg-gray-900
                     text-gray-300
+                    focus:outline-none
+                    focus:placeholder-gray-300
                   "
-                  readonly
                   type="number"
                   step="any"
+                  min="-180" max="180"
                   placeholder="longitude"
                 />
               </div>
@@ -246,7 +247,6 @@
                     rounded
                     py-3
                     px-4
-                    mb-3
                     leading-tight
                     hover:bg-blue-700 hover:text-white
                     ease-linear
@@ -270,7 +270,7 @@
                   />
                 </label>
               </div>
-              <div class="img-preview-toggle">
+              <div class="img-preview-toggle justify-self-center">
                 <img class="img-preview" src="" alt="spot picture preview" />
               </div>
               <div>
@@ -288,11 +288,10 @@
                     rounded
                     py-3
                     px-4
-                    mb-3
                     leading-tight
-                    hover:border
-                    focus:text-white
-                    hover:bg-pink-600 hover:text-white
+                    hover:bg-pink-600
+                    hover:text-white
+                    focus:outline-none focus:placeholder-gray-300
                     ease-linear
                     transition-all
                     duration-150
@@ -308,6 +307,6 @@
           <textarea id="hidden-base64" name="base64"></textarea>
         </form>
       </div>
-    </div>
+    </main>
   </body>
 </html>

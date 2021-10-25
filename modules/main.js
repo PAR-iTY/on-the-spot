@@ -9,8 +9,8 @@ const handleImg = e => {
 
   if (file) {
     // sanity check file size due to base64 encoding
-    // 2 mb in binary = 2097152
-    // 3 mb in binary = 3145728
+    // 2 mb in bytes = 2097152
+    // 3 mb in bytes = 3145728
     if (file.size > 3145728) {
       console.error('file size must be under 3 megabytes');
 
@@ -43,9 +43,11 @@ const handleReader = () => {
 
     preview.src = reader.result;
 
-    toggle.style.visibility = 'visible';
+    // add tailwind margin
+    // could also add max-w- and max-h- ?
+    preview.classList.add('mt-2');
 
-    // preview.style.display = 'inline-block';
+    toggle.style.visibility = 'visible';
 
     // add this to hidden textarea element
     document.getElementById('hidden-base64').value = reader.result;
@@ -58,17 +60,20 @@ const handleReader = () => {
   }
 };
 
-// const wipeReader = () ={};
-
 // handles clearing form on submit
 const handleSubmit = e => {
   console.log('submit event', e);
 
   // remove image preview
-  document.querySelector('img.img-preview').src = '';
+  const preview = document.querySelector('img.img-preview');
 
-  document.querySelector('div.img-preview-toggle').style.visibility = 'hidden';
-  // preview.style.display = 'inline-block';
+  const toggle = document.querySelector('div.img-preview-toggle');
+
+  preview.src = '';
+  // remove tailwind margin
+  preview.classList.remove('mt-2');
+
+  toggle.style.visibility = 'hidden';
 };
 
 // handles coord by calling utils.js functions
@@ -116,7 +121,14 @@ addEventListener(
 
     // reset form? may interfere with formspree
     // something crude like a setInterval? better some kind of event?
-    document.getElementById('spot-form').reset();
+    // document.getElementById('spot-form').reset();
+
+    // remove image preview
+    const preview = document.querySelector('img.img-preview');
+
+    preview.src = '';
+    // remove tailwind margin
+    preview.classList.remove('mt-2');
   },
   { capture: true }
 );

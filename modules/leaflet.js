@@ -43,21 +43,65 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // console.log('spots_file:', spots_file);
 
-  const spots = await fetchJSON('./assets/data/spots.geojson');
+  const spots = await fetchJSON('./data/spots.geojson');
 
   // console.log(spots);
 
   if (spots) {
     // Coordinates in GeoJSON: [longitude, latitude] --> using this one
     // Coordinates in Leaflet: [latitude, longitude]
-    L.geoJSON(spots).addTo(mymap);
+
+    const myStyle = { backgroundColor: 'rgb(31, 41, 55)' };
+    // pointToLayer: addMarker
+    // pointToLayer: pointToLayerCircleMarker
+    // style: myStyle,
+    const config = {
+      onEachFeature: onEachFeature
+    };
+
+    L.geoJSON(spots, config).addTo(mymap);
   }
 
   mymap.on('click', onMapClick);
 });
 
+// bind geojson data features to popups
+const onEachFeature = (feature, layer) => {
+  // write an extraction of data into a html struct (grid?)
+  // use tailwind styling
+
+  // https://stackoverflow.com/questions/387942/google-street-view-url
+
+  // layer= Activates overlays. Current options are "t" traffic, "c" street view. Append (e.g. layer=tc) for simultaneous.
+
+  const streetView = `http://maps.google.com/maps?q=&layer=c&cbll=${feature.geometry.coordinates[1]},${feature.geometry.coordinates[0]}`;
+
+  let html = `<div>
+  <p>${feature.properties.name}</p>
+  <a href="${streetView}" target="_blank">Open in Google Street View</a>
+  </div>`;
+
+  if (feature.properties.picture) {
+    // use picture value to fetch image
+    html += `<img src="./data/img/${feature.properties.picture}" alt="a picture of ${feature.properties.name}">`;
+  }
+
+  if (feature.properties.city) {
+    html += `<p>${feature.properties.city}</p>`;
+  }
+
+  const options = {
+    className: 'bg-gray-800 rounded font-mono border-2 border-pink-600'
+  };
+
+  layer.bindPopup(html, options);
+};
+
 const onMapClick = e => {
-  var popup = L.popup({ maxHeight: 300 });
+  var popup = L.popup({
+    maxHeight: 300,
+    className: 'bg-gray-800 rounded font-mono border-2 border-pink-600'
+  });
 
   // lat, lng are global refs to input elements
 
@@ -72,6 +116,11 @@ const onMapClick = e => {
     .openOn(mymap);
 };
 
+// handles error and returns json obj or false
+// this is bad error handling for a few reasons:
+// it denies the caller the chance to catch errors
+// it has two possible return types
+// it seems to still require awaiting when called? (this one is confusing)
 const fetchJSON = async url => {
   try {
     const res = await fetch(url);
@@ -91,29 +140,6 @@ const fetchJSON = async url => {
 // lat.dispatchEvent(new Event('input'));
 // lng.dispatchEvent(new Event('input'));
 
-// const myStyle = {
-//   color: '#ff7800',
-//   weight: 5,
-//   opacity: 0.65
-// };
-
-// function onEachFeature(feature, layer) {
-//   layer.bindPopup(feature.properties.name);
-// }
-
-// create your custom icon
-// var myIcon = L.icon({
-//   iconUrl:
-//     'https://banner2.cleanpng.com/20180423/igw/kisspng-park-merlo-weston-location-citizens-telephone-corp-local-5ade0004ebd0a9.1830609215244984369659.jpg',
-//   iconSize: [32, 37],
-//   iconAnchor: [16, 37],
-//   popupAnchor: [0, -28]
-// });
-
-// function addMarker(feature, latlng) {
-//   return L.marker(latlng, { icon: myIcon });
-// }
-
 // var geojsonMarkerOptions = {
 //   radius: 8,
 //   fillColor: '#ff7800',
@@ -126,9 +152,20 @@ const fetchJSON = async url => {
 // const pointToLayerCircleMarker = (feature, latlng) =>
 //   L.circleMarker(latlng, geojsonMarkerOptions);
 
-// style: myStyle,
-// onEachFeature: onEachFeature,
-// pointToLayer: addMarker
-// const config = {
-//   pointToLayer: pointToLayerCircleMarker
+// const myStyle = {
+//   color: '#ff7800',
+//   weight: 5,
+//   opacity: 0.65
 // };
+
+// var myIcon = L.icon({
+//   iconUrl:
+//     'https://banner2.cleanpng.com/20180423/igw/kisspng-park-merlo-weston-location-citizens-telephone-corp-local-5ade0004ebd0a9.1830609215244984369659.jpg',
+//   iconSize: [32, 37],
+//   iconAnchor: [16, 37],
+//   popupAnchor: [0, -28]
+// });
+
+// function addMarker(feature, latlng) {
+//   return L.marker(latlng, { icon: myIcon });
+// }

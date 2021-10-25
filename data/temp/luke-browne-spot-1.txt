@@ -1,0 +1,15 @@
+name
+
+College verts
+_replyto
+
+bung@hole.com
+latitude
+
+-41.230347
+longitude
+
+174.797713
+city
+
+base64
