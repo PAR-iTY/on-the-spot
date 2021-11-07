@@ -2,7 +2,7 @@
 
 map of user-submitted skate spots
 
-## serverless static site persistence with python, gmail and git back-end
+### serverless static site persistence with python, gmail and git back-end
 
 - user sends form data to formspree service
 - gmail recieves data and is read by python
@@ -31,9 +31,10 @@ map of user-submitted skate spots
 - improve spot-hunting UX generally with better navigation and details and search
 - add this location-search API https://www.youtube.com/watch?v=ZXT8i0qR2vE
 - apparently it can integrate with leaflet
-  > ### possible
-  >
-  > - listen for windows user notification event
-  > - access via python would likely suck
-  > - call this python script from powershell
-  > - use powershell to drive event api calls and git
+
+## possible
+
+- listen for windows user notification event
+- access via python would likely suck
+- call this python script from powershell
+- use powershell to drive event api calls and git
