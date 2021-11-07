@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
-    <!-- Leaflet Local [dev-fix: replace with npm] -->
+    <!-- Leaflet Local [dev-only: replace with npm] -->
     <script src="./libraries/leaflet/leaflet.js"></script>
     <link rel="stylesheet" href="./libraries/leaflet/leaflet.css" />
-    <!-- Tailwind CDN [dev-fix: replace with npm] -->
+    <!-- Tailwind CDN [dev-only: replace with npm] -->
     <link
       href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <!-- <link
-      href="https://unpkg.com/tailwindcss@latest/dist/tailwind.min.css"
-      rel="stylesheet"
-    /> -->
     <!-- customisations -->
     <script type="module" src="./modules/utils.js"></script>
     <script type="module" src="./modules/leaflet.js"></script>
@@ -24,6 +20,9 @@
     <link rel="stylesheet" href="./style.css" />
     <title>On The Spot | Skate Map</title>
   </head>
+  <!-- <p class="text-pink-600"> testing</p> -->
+  
+
   <body class="bg-gray-800 text-pink-600 font-mono w-full grid grid-cols-1 place-items-center">
     <main class="max-w-screen-xl w-11/12 my-8">
       <h1
@@ -46,7 +45,7 @@
       
       
       
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
+      <main class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-5">
         <div>
           <h3 class="tracking-wide mb-2">1. find your spot and click</h3>
           <div class="h-80 md:h-full" id="mapid"></div>
@@ -60,6 +59,8 @@
             action="https://formspree.io/f/xdoyvdyy"
             method="POST"
           >
+          <!-- <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="sm:w-min md:w-1/2 px-3 mb-2 md:mb-0"> -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-2 gap-y-2 md:gap-y-5">
               <div>
                 <label
@@ -88,13 +89,12 @@
                     bg-gray-900
                     text-gray-300
                     border border-pink-600
-                    hover:border-pink-500
                     rounded
                     py-3
                     px-4
                     leading-tight
-                    focus:outline-none 
-                    focus:placeholder-gray-300
+                    focus:outline-none focus:placeholder-gray-300
+                    
                   "
                   type="text"
                   placeholder="spot name"
@@ -130,7 +130,6 @@
                     bg-gray-900
                     text-gray-300
                     border border-blue-700
-                    hover:border-blue-600
                     rounded
                     py-3
                     px-4
@@ -169,7 +168,6 @@
                     bg-gray-900
                     text-gray-300
                     border border-pink-600
-                    hover:border-pink-500
                     rounded
                     py-3
                     px-4
@@ -211,7 +209,6 @@
                     w-full
                     sm:w-min
                     border border-pink-600
-                    hover:border-pink-500
                     rounded
                     py-3
                     px-4
@@ -288,7 +285,6 @@
                     bg-gray-900
                     text-gray-300
                     border border-pink-600
-                    hover:border-pink-500
                     rounded
                     py-3
                     px-4
@@ -311,6 +307,6 @@
           <textarea id="hidden-base64" name="base64"></textarea>
         </form>
       </div>
-    </div>
+    </main>
   </body>
 </html>
