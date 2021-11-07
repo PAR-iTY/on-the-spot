@@ -50,6 +50,44 @@
         "name": "college verts",
         "city": ""
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.978974, -41.158305]
+      },
+      "properties": {
+        "id": "e2d89430",
+        "name": "devangas driveway with fancy concrete",
+        "city": "lower hutt"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [174.777444, -41.298442]
+      },
+      "properties": {
+        "id": "5a351946",
+        "name": "mem",
+        "city": "wellington",
+        "picture": "mem-5a351946.png"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [170.499371, -45.873727]
+      },
+      "properties": {
+        "id": "e5fa7003",
+        "name": "og 9s",
+        "city": "dunedin",
+        "picture": "og-9s-e5fa7003.jpg"
+      }
     }
   ]
 }

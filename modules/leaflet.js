@@ -2,6 +2,13 @@
  * Created by yawno on 25/11/2017.
  */
 
+// originally created in 2017 when learning web development
+// this code bears no resemblance to the original only spirit
+
+// ideas: add more leaflet layers/detail or use cesium or google
+// could use folium python lib to to data processing with python &
+// generate a more configured and detailed leaflet map html output
+
 // being a dirty globalist...for now...
 let mymap, lat, lng;
 
@@ -51,7 +58,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     // Coordinates in GeoJSON: [longitude, latitude] --> using this one
     // Coordinates in Leaflet: [latitude, longitude]
 
-    const myStyle = { backgroundColor: 'rgb(31, 41, 55)' };
+    // const myStyle = { backgroundColor: 'rgb(31, 41, 55)' };
     // pointToLayer: addMarker
     // pointToLayer: pointToLayerCircleMarker
     // style: myStyle,
@@ -103,6 +110,10 @@ const onMapClick = e => {
     className: 'bg-gray-800 rounded font-mono border-2 border-pink-600'
   });
 
+  const streetView = `http://maps.google.com/maps?q=&layer=c&cbll=${e.latlng.lat},${e.latlng.lng}`;
+
+  let content = `<p>You clicked the map at ${e.latlng.toString()}</p><a href="${streetView}" target="_blank">Open in Google Street View</a>`;
+
   // lat, lng are global refs to input elements
 
   // will activate a mutation observer
@@ -110,10 +121,7 @@ const onMapClick = e => {
   lat.setAttribute('value', e.latlng.lat);
   lng.setAttribute('value', e.latlng.lng);
 
-  popup
-    .setLatLng(e.latlng)
-    .setContent('You clicked the map at ' + e.latlng.toString())
-    .openOn(mymap);
+  popup.setLatLng(e.latlng).setContent(content).openOn(mymap);
 };
 
 // handles error and returns json obj or false
