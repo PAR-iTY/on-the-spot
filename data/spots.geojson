@@ -6,7 +6,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [174.784761, -41.29201]
+        "coordinates": [
+          174.784761,
+          -41.29201
+        ]
       },
       "properties": {
         "id": "dc514585",
@@ -18,7 +21,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [169.135332, -44.696637]
+        "coordinates": [
+          169.135332,
+          -44.696637
+        ]
       },
       "properties": {
         "id": "81cb0842",
@@ -30,7 +36,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [170.503582, -45.874107]
+        "coordinates": [
+          170.503582,
+          -45.874107
+        ]
       },
       "properties": {
         "id": "1be1f0a3",
@@ -43,7 +52,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [174.797713, -41.230347]
+        "coordinates": [
+          174.797713,
+          -41.230347
+        ]
       },
       "properties": {
         "id": "da5764bd",
@@ -55,7 +67,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [174.978974, -41.158305]
+        "coordinates": [
+          174.978974,
+          -41.158305
+        ]
       },
       "properties": {
         "id": "e2d89430",
@@ -67,7 +82,10 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [174.777444, -41.298442]
+        "coordinates": [
+          174.777444,
+          -41.298442
+        ]
       },
       "properties": {
         "id": "5a351946",
@@ -80,13 +98,95 @@
       "type": "Feature",
       "geometry": {
         "type": "Point",
-        "coordinates": [170.499371, -45.873727]
+        "coordinates": [
+          170.499371,
+          -45.873727
+        ]
       },
       "properties": {
         "id": "e5fa7003",
         "name": "og 9s",
         "city": "dunedin",
         "picture": "og-9s-e5fa7003.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.776972,
+          -41.288813
+        ]
+      },
+      "properties": {
+        "id": "ace722b5",
+        "name": "civic square (7 stair and rounded bank)",
+        "city": "wellington",
+        "picture": "civic-square-(7-stair-and-rounded-bank)-ace722b5.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.80167,
+          -41.324061
+        ]
+      },
+      "properties": {
+        "id": "b7e50c0a",
+        "name": "rongotai skate park",
+        "city": "wellington",
+        "picture": "rongotai-skate-park-b7e50c0a.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.801718,
+          -41.317711
+        ]
+      },
+      "properties": {
+        "id": "11f3cece",
+        "name": "asb sports centre",
+        "city": "wellington"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.795474,
+          -41.325474
+        ]
+      },
+      "properties": {
+        "id": "ac8cc05f",
+        "name": "onepu road gap",
+        "city": "wellington",
+        "picture": "onepu-road-gap-ac8cc05f.jpg"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.801037,
+          -41.322081
+        ]
+      },
+      "properties": {
+        "id": "1c6de69d",
+        "name": "rongotai college manny pad",
+        "city": "wellington",
+        "picture": "rongotai-college-manny-pad-1c6de69d.jpg"
       }
     }
   ]
