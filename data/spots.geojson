@@ -188,6 +188,22 @@
         "city": "wellington",
         "picture": "rongotai-college-manny-pad-1c6de69d.jpg"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.776409,
+          -41.282136
+        ]
+      },
+      "properties": {
+        "id": "b34e79fa",
+        "name": "midlands",
+        "city": "wellington",
+        "picture": "midlands-b34e79fa.jpg"
+      }
     }
   ]
 }

@@ -2,11 +2,11 @@
 
 map of user-submitted skate spots
 
-### serverless static site persistence with python, gmail and git back-end
+### serverless static site persistence with python, gmail and git
 
 - user sends form data to formspree service
 - gmail recieves data and is read by python
-- python 'server' processes gmail data
+- python processes gmail data
 - geojson file and images are updated
 - git pushes updates back to static site
 
@@ -22,19 +22,15 @@ map of user-submitted skate spots
 - formspree freemium base64 image-encoding and decoding workaround
 - learning to scaffold fast responsive grid css with tailwind css
 - client-side ecmascript modules syntax for readability and modularity
+- uses python subprocess to run git push to close the loop and update website
 
 ## todo
-
 - swap tailwind cdn for vite.js + tailwind + postcss to generate production css
 - schedule the python script to run or somehow attach listener to email notification
-- in python script use subprocess to run git push to close the loop and update website
 - improve spot-hunting UX generally with better navigation and details and search
-- add this location-search API https://www.youtube.com/watch?v=ZXT8i0qR2vE
-- apparently it can integrate with leaflet
+- add this location-search API https://www.youtube.com/watch?v=ZXT8i0qR2vE (apparently it can integrate with leaflet)
 
 ## possible
-
-- listen for windows user notification event
-- access via python would likely suck
-- call this python script from powershell
-- use powershell to drive event api calls and git
+- use event driven approach over scheduling via python/powershell/RSS/other
+- listen for windows user notification event (gmail itself offers desktop notifications)
+- call this python script from powershell and use to drive event api calls

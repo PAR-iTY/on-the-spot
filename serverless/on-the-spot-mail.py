@@ -1,4 +1,4 @@
-# from: https://codehandbook.org/how-to-read-email-from-gmail-using-python/
+# inspired from: https://codehandbook.org/how-to-read-email-from-gmail-using-python/
 # https://github.com/jay3dec/pythonReadEmail
 
 # Python 3.8^ standard libraries
@@ -11,16 +11,17 @@ from json import load, dump
 from os import walk, linesep
 from email.policy import default as default_policy
 import configparser
-
-# -------------------------------------------------
-#
-# Utility to read email from Gmail using Python
-#
-# -------------------------------------------------
+import subprocess
 
 # get environment variables
 config = configparser.ConfigParser()
 config.read('./env/env.ini')
+
+# -------------------------------------------------
+#
+# Read email from gmail using python
+#
+# -------------------------------------------------
 
 
 def read_email_from_gmail():
@@ -49,7 +50,7 @@ def read_email_from_gmail():
         mail.login(FROM_EMAIL, FROM_PWD)
 
         # avoid selecting entire inbox if possible
-        # be careful to transmit double quotes too
+        # be careful to transmit double quotes to mail.select()
         # env.ini FROM_BOX string includes the double quotes
         mail.select(config['DEFAULT']['FROM_BOX'])
 
@@ -57,7 +58,7 @@ def read_email_from_gmail():
         # try 'UNSEEN' once its up and running
         mail_data = mail.search(None, 'ALL')
 
-        print('reading email..')
+        print('reading mail..')
         # all this is just to list ints [1,...24] to decrement over
         # what about a less variably and extra implementation?
         # range only uses it once: mail.fetch(str(i), '<PROTOCOL>')
@@ -272,6 +273,22 @@ def read_email_from_gmail():
     # write updated spots back to file
     with open(f"{config['DEFAULT']['DATA_PATH']}/spots.geojson", 'w') as json_file:
         dump(spots_db, json_file, indent=2)
+
+    print('updated spots database')
+
+    print('pushing changes to github..')
+
+    result_git_add = subprocess.run(
+        ["git", "add", "-A"], cwd=config['DEFAULT']['DATA_PATH'])
+
+    result_git_commit = subprocess.run(
+        ["git", "commit", "-m", "updated spots from python"], cwd=config['DEFAULT']['DATA_PATH'])
+
+    result_git_push = subprocess.run(
+        ["git", "push", "origin", "main"], cwd=config['DEFAULT']['DATA_PATH'])
+
+    # if needed can check results e.g:
+    # print(result_git_push.stderr)
 
     print('..done\n')
 
