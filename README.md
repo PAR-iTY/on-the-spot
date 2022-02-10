@@ -1,32 +1,32 @@
 # on-the-spot
 
-map of user-submitted skate spots
+map of user-submitted skate spots to be built up over time as a resource for skaters
 
-### serverless static site persistence with python, gmail and git
+### static site persistence with python, gmail and git
 
-- user sends form data to formspree service
-- gmail recieves data and is read by python
-- python processes gmail data
+- user submits form data via formspree API service
+- dedicated gmail account recieves form data from API
+- local python script reads and processes gmail data
 - geojson file and images are updated
 - git pushes updates back to static site
 
 ## experiments
 
-- serverless persistence without significant cloud services or fees
-- using a free static site form submission api for security and filtering
-- email processing script that only uses python 3.8^ standard libraries
-- being opinionated for predictability with data and filename text formatting
-- parsing email lines into geojson to load into mapping library
-- config file template with fake values for seperating environment variables
-- mutation observer api to unify user and programmatic form-filling events
+- static site persistence without dedicated server/cloud services or fees
+- email processing script that only uses standard libraries (python 3.8^)
+- uses python subprocess to run git push to close the loop and update website
+- parsing email line-data into geojson to load into leaflet map library
+- using opinionated and predictable name formatting for data storage
+- config ini file for seperating environment variables (github values are fake)
+- using a free form submission API to avoid security concerns and server
 - formspree freemium base64 image-encoding and decoding workaround
+- mutation observer API to unify user and programmatic form-filling events
 - learning to scaffold fast responsive grid css with tailwind css
 - client-side ecmascript modules syntax for readability and modularity
-- uses python subprocess to run git push to close the loop and update website
 
 ## note on security
 
-As a for fun experiment, the python script uses entirely standard libraries, avoids the official Gmail API, and associated credentials and authentication methods. This is not best practice and not reccomended if this app were handling any sensitive data, or pointed at a personal email account, or were to be used in any sort of production environment or run from a online location.
+As a for fun experiment, the python script uses entirely standard libraries to avoid the gmail API and associated credentials and authentication methods. This is not best practice and not reccomended if this app were handling any sensitive data, or pointed at a personal email account, or were to be used in any sort of production environment or run from an online location.
 
 The following security mitigations are used:
 
