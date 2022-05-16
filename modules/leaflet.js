@@ -9,7 +9,7 @@
 // could use folium python lib to to data processing with python &
 // generate a more configured and detailed leaflet map html output
 
-// being a dirty globalist...for now...
+// globals
 let mymap, lat, lng;
 
 window.addEventListener('DOMContentLoaded', async () => {

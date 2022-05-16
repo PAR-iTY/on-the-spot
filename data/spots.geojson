@@ -204,6 +204,22 @@
         "city": "wellington",
         "picture": "midlands-b34e79fa.jpg"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.782939,
+          -41.290832
+        ]
+      },
+      "properties": {
+        "id": "b4f86db1",
+        "name": "te papa bobbles",
+        "city": "wellington",
+        "picture": "te-papa-bobbles-b4f86db1.jpg"
+      }
     }
   ]
 }
