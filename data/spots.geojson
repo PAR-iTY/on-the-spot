@@ -68,21 +68,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          174.978974,
-          -41.158305
-        ]
-      },
-      "properties": {
-        "id": "e2d89430",
-        "name": "devangas driveway with fancy concrete",
-        "city": "lower hutt"
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           174.777444,
           -41.298442
         ]
